@@ -138,9 +138,9 @@ return (0);
  */
 int renumber_history(info_t *note)
 {
+int i;
 list_t *node;
 node = note->history;
-int i;
 i = 0;
 while (node)
 {

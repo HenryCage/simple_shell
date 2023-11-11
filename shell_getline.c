@@ -56,7 +56,9 @@ ssize_t get_input(info_t *note)
 static char *buf;
 static size_t i, m, len;
 ssize_t u;
-char **buf_p = &(note->arg), *p;
+char **buf_p;
+char **p;
+*buf_p = &(note->arg);
 u = 0;
 
 _putchar(BUF_FLUSH);

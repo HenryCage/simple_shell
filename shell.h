@@ -113,8 +113,8 @@ int histcount;
 typedef struct builtin
 {
 char *type;
-int (*func)(info_t *);
-} builtin_table;
+int (*func)(info_t *note);
+} builtin_entry;
 
 
 /* All shell loop.c functions */
