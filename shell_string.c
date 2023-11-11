@@ -34,7 +34,7 @@ return (*s0 - *s1);
 s0++;
 s1++;
 }
-if (*s0== *s1)
+if (*s0 == *s1)
 return (0);
 else
 return (*s0 < *s1 ? -1 : 1);

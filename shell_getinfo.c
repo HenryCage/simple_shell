@@ -36,7 +36,7 @@ note->argv[0] = _strdup(note->arg);
 note->argv[1] = NULL;
 }
 }
-for (i = 0; note->argv && note->argv[i]; i++);
+for (i = 0; note->argv && note->argv[i]; i++)
 note->argc = i;
 
 replace_alias(note);

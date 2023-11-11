@@ -22,7 +22,7 @@ if (!is_delim(str[i], d) && (is_delim(str[i + 1], d) || !str[i + 1]))
 numwords++;
 if (numwords == 0)
 return (NULL);
-u = malloc((1 + numwords) * sizeof(char *));
+u = malloc((1 + numwords) *sizeof(char *));
 if (!u)
 return (NULL);
 for (i = 0, j = 0; j < numwords; j++)
@@ -69,7 +69,7 @@ if ((str[i] != d && str[i + 1] == d) ||
 numwords++;
 if (numwords == 0)
 return (NULL);
-u = malloc((1 + numwords) * sizeof(char *));
+u = malloc((1 + numwords) *sizeof(char *));
 if (!u)
 return (NULL);
 for (i = 0, j = 0; j < numwords; j++)

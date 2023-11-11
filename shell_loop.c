@@ -50,13 +50,14 @@ return (builtin_let);
  * @note: the parameter & return note struct
  *
  * Return: -1 if builtin not found,
- *			0 if builtin executed successfully,
- *			1 if builtin found but not successful,
- *			-2 if builtin signals exit()
+ *		0 if builtin executed successfully,
+ *		1 if builtin found but not successful,
+ *		-2 if builtin signals exit()
  */
 int find_builtin(info_t *note)
 {
 int i, built_in_let;
+built_in_let = -1;
 
 builtin_entry builtintbl[] = {
 {"exit", _exit},
@@ -69,14 +70,15 @@ builtin_entry builtintbl[] = {
 {"alias", _mialias},
 {NULL, NULL}
 };
-built_in_let = -1;
 
 for (i = 0; builtintbl[i].type; i++)
+{
 if (_strcmp(note->argv[0], builtintbl[i].type) == 0)
 {
 note->line_count++;
 built_in_let = builtintbl[i].func(note);
 break;
+}
 }
 return (built_in_let);
 }
