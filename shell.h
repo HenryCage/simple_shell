@@ -41,7 +41,7 @@ void eputs(const char *str);
 void eputchar(char c);
 
 extern char **environ;
-
+#define STDERR_FILENO 2
 
 /**
  * struct liststr - singly linked list
@@ -134,6 +134,7 @@ void _eputs(char *str);
 int _eputchar(char c);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
+int _putchar(char c);
 
 /* All errors.c functions */
 int _erratoi(char *s);

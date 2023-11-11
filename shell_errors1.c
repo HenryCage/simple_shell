@@ -1,6 +1,26 @@
 #include "shell.h"
 
 /**
+ * _putchar - Writes a character to standard output.
+ * @c: The character to print.
+ * Return: Number of characters written.
+ */
+int _putchar(char c)
+{
+return (write(1, &c, 1));
+}
+
+/**
+ * _eputchar - Writes a character to standard error output.
+ * @c: The character to print.
+ * Return: Number of characters written.
+ */
+int _eputchar(char c)
+{
+return (write(STDERR_FILENO, &c, 1));
+}
+
+/**
  * _erratoi - converts a string to an integer
  * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
@@ -57,10 +77,9 @@ _eputs(estr);
  */
 int print_d(int input, int fd)
 {
-int (*__putchar)(char);
+int (*__putchar)(char) = (fd == STDERR_FILENO) ? _eputchar : _putchar;
 int i, count;
 unsigned int _abs_, current;
-(*__putchar)(char) = _putchar;
 count = 0;
 
 if (fd == STDERR_FILENO)
@@ -70,9 +89,11 @@ if (input < 0)
 _abs_ = -input;
 __putchar('-');
 count++;
-	}
+}
 else
+{
 _abs_ = input;
+}
 current = _abs_;
 for (i = 1000000000; i > 1; i /= 10)
 {

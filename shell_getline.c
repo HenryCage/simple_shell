@@ -17,9 +17,8 @@ len_q = 0;
 
 if (!*len)
 {
-b
 signal(SIGINT, sigintHandler);
-
+}
 #if USE_GETLINE
 u = getline(buf, &len_q, stdin);
 #else
@@ -56,9 +55,7 @@ ssize_t get_input(info_t *note)
 static char *buf;
 static size_t i, m, len;
 ssize_t u;
-char **buf_p;
-char **p;
-*buf_p = &(note->arg);
+char **buf_p = &(note->arg), *p;
 u = 0;
 
 _putchar(BUF_FLUSH);
@@ -84,6 +81,7 @@ note->cmd_buf_type = CMD_NORM;
 }
 *buf_p = p;
 return (_strlen(p));
+}
 *buf_p = buf;
 return (u);
 }
@@ -119,7 +117,7 @@ return (u);
 int _getline(info_t *note, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
-static size_t i, len;
+static size_t i, len, S;
 size_t m;
 ssize_t r, s;
 char *p, *new_p, *c;
