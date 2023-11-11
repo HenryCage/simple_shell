@@ -25,7 +25,7 @@ return (i);
  *
  * Return: negative if s0 < s1, positive if s0 > s1, zero if s0 == s1
  */
-int _strcmp(char *s0, char *s1)
+int _strcmp(const char *s0, const char *s1)
 {
 while (*s0 && *s1)
 {
@@ -62,15 +62,14 @@ return ((char *)haystack);
  *
  * Return: A pointer to destination buffer
  */
-char *_strcat(char *dest, char *src)
+char *_strcat(char *dest, const char *src)
 {
-char *let;
-let = dest;
+char *let = dest;
 
 while (*dest)
 dest++;
 while (*src)
 *dest++ = *src++;
-*dest = *src;
+*dest = '\0';
 return (let);
 }
