@@ -112,16 +112,15 @@ typedef struct passinfo
  */
 typedef struct builtin
 {
-<<<<<<< HEAD
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
-=======
+
+typedef struct builtin
+{
 char *type;
 int (*func)(info_t *note);
 } builtin_entry;
->>>>>>> 768c2cb4427d5a19dfcfedc8ac588c47d007f2c4
-
 
 /* All shell loop.c functions */
 int hsh(info_t *note, char **av);

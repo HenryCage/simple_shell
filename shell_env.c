@@ -30,6 +30,7 @@ int _unsetenv(info_t *note, char *var)
 	list_t *node;
 	size_t i;
 	char *p;
+
 	node = note->env;
 	i = 0;
 
@@ -51,7 +52,6 @@ int _unsetenv(info_t *note, char *var)
 		node = node->next;
 		i++;
 	}
-	
 	return (note->env_changed);
 }
 
@@ -70,6 +70,7 @@ int _setenv(info_t *note, char *var, char *value)
 	char *buf;
 	list_t *node;
 	char *p;
+
 	buf = NULL;
 
 	if (!var || !value)
