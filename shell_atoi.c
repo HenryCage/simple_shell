@@ -6,6 +6,7 @@
  *
  * Return: 1 if interactive mode, 0 otherwise
  */
+
 int interactive(info_t *note)
 {
 return (isatty(STDIN_FILENO) && note->readfd <= 2);
@@ -17,6 +18,7 @@ return (isatty(STDIN_FILENO) && note->readfd <= 2);
  * @delim: the delimeter string
  * Return: 1 if true, 0 if false
  */
+
 int is_delim(char c, char *delim)
 {
 while (*delim)
@@ -55,6 +57,17 @@ flag = 0;
 
 result = 0;
 }
+for (i = 0;  s[i] != '\0' && flag != 2; i++)
+{
+if (s[i] == '-')
+sign *= -1;
+
+int i, sign, flag, output;
+unsigned int result;
+sign = 1;
+flag = 0;
+result = 0;
+
 for (i = 0;  s[i] != '\0' && flag != 2; i++)
 {
 if (s[i] == '-')

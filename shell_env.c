@@ -8,13 +8,13 @@
  */
 char **get_environ(info_t *note)
 {
-if (!note->environ || note->env_changed)
-{
-note->environ = list_to_strings(note->env);
-note->env_changed = 0;
-}
+	if (!note->environ || note->env_changed)
+	{
+		note->environ = list_to_strings(note->env);
+		note->env_changed = 0;
+	}
 
-return (note->environ);
+	return (note->environ);
 }
 
 /**
@@ -24,31 +24,35 @@ return (note->environ);
  *  Return: 1 on delete, 0 otherwise
  * @var: the string env var property
  */
+
 int _unsetenv(info_t *note, char *var)
 {
-list_t *node;
-size_t i;
-char *p;
-node = note->env;
-i = 0;
+	list_t *node;
+	size_t i;
+	char *p;
+	node = note->env;
+	i = 0;
 
-if (!node || !var)
-return (0);
+	if (!node || !var)
+		return (0);
 
-while (node)
-{
-p = starts_with(node->str, var);
-if (p && *p == '=')
-{
-note->env_changed = delete_node_at_index(&(note->env), i);
-i = 0;
-node = note->env;
-continue;
-}
-node = node->next;
-i++;
-}
-return (note->env_changed);
+	while (node)
+	{
+		p = starts_with(node->str, var);
+
+		if (p && *p == '=')
+		{
+			note->env_changed = delete_node_at_index(&(note->env), i);
+			i = 0;
+			node = note->env;
+			continue;
+		}
+
+		node = node->next;
+		i++;
+	}
+	
+	return (note->env_changed);
 }
 
 /**
@@ -60,37 +64,44 @@ return (note->env_changed);
  * @value: the string env var value
  *  Return: Always 0
  */
+
 int _setenv(info_t *note, char *var, char *value)
 {
-char *buf;
-list_t *node;
-char *p;
-buf = NULL;
+	char *buf;
+	list_t *node;
+	char *p;
+	buf = NULL;
 
-if (!var || !value)
-return (0);
+	if (!var || !value)
+		return (0);
 
-buf = malloc(_strlen(var) + _strlen(value) + 2);
-if (!buf)
-return (1);
-_strcpy(buf, var);
-_strcat(buf, "=");
-_strcat(buf, value);
-node = note->env;
-while (node)
-{
-p = starts_with(node->str, var);
-if (p && *p == '=')
-{
-free(node->str);
-node->str = buf;
-note->env_changed = 1;
-return (0);
-}
-node = node->next;
-}
-add_node_end(&(note->env), buf, 0);
-free(buf);
-note->env_changed = 1;
-return (0);
+	buf = malloc(_strlen(var) + _strlen(value) + 2);
+	if (!buf)
+		return (1);
+
+	_strcpy(buf, var);
+	_strcat(buf, "=");
+	_strcat(buf, value);
+	node = note->env;
+
+	while (node)
+	{
+		p = starts_with(node->str, var);
+
+		if (p && *p == '=')
+		{
+			free(node->str);
+			node->str = buf;
+			note->env_changed = 1;
+			return (0);
+		}
+
+		node = node->next;
+	}
+
+	add_node_end(&(note->env), buf, 0);
+	free(buf);
+	note->env_changed = 1;
+
+	return (0);
 }
