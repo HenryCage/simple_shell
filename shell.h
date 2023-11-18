@@ -116,7 +116,7 @@ typedef struct builtin
 	int (*func)(info_t *);
 } builtin_table;
 
-typedef struct builtin
+typedef struct builtin1
 {
 char *type;
 int (*func)(info_t *note);

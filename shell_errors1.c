@@ -120,11 +120,9 @@ return (count);
  */
 char *convert_number(long int num, int base, int flags)
 {
-{
-static char *array;
 static char buffer[50];
 char sign;
-char *ptr;
+char *ptr, *array;
 unsigned long n;
 n = num;
 sign = 0;
@@ -133,20 +131,21 @@ if (!(flags & CONVERT_UNSIGNED) && num < 0)
 {
 n = -num;
 sign = '-';
-
 }
-array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+array = (flags & CONVERT_LOWERCASE) ? "0123456789abcdef" : "0123456789ABCDEF";
 ptr = &buffer[49];
 *ptr = '\0';
 
-do {
+do
+{
 *--ptr = array[n % base];
 n /= base;
 }
-while (n != 0)
-}
+while (n != 0);
+
 if (sign)
 *--ptr = sign;
+
 return (ptr);
 }
 
@@ -161,9 +160,22 @@ void remove_comments(char *buf)
 int i;
 
 for (i = 0; buf[i] != '\0'; i++)
+{
 if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
 {
 buf[i] = '\0';
 break;
 }
 }
+}
+#ifdef TEST_REMOVE_COMMENTS
+
+int main(void)
+{
+char testString[] = "This is a test #comment";
+printf("Before: %s\n", testString);
+remove_comments(testString);
+printf("After: %s\n", testString);
+return 0;
+}
+#endif
